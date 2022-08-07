@@ -1,8 +1,7 @@
 import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
-import {  createStyleImportPlugin,
-  AndDesignVueResolve, } from "vite-plugin-style-import";
+import { createStyleImportPlugin, AndDesignVueResolve } from "vite-plugin-style-import";
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
@@ -25,7 +24,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
-      // "~": fileURLToPath(new URL("./node_modules", import.meta.url)),
       '~' : path.resolve(__dirname, './node_modules'),
     },
   },
@@ -33,7 +31,16 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
+        modifyVars: {
+          'border-radius-base': '4px',
+          'body-background': '#161826',
+          'primary-color': '#6366f1',
+          'link-color': '#06b6d4',
+          'success-color': '#10b981',
+          'warning-color': '#eab308',
+          'error-color': '#f43f5e',
+        }
       },
-    },
+    }
   }
 });
