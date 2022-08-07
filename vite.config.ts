@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from "node:url";
+import svgLoader from 'vite-svg-loader'
 
 import { defineConfig } from "vite";
 import { createStyleImportPlugin, AndDesignVueResolve } from "vite-plugin-style-import";
@@ -12,6 +13,7 @@ import path from "node:path";
 export default defineConfig({
   plugins: [
     vue(),
+    svgLoader(),
     Components({
       resolvers: [AntDesignVueResolver()],
     }),
