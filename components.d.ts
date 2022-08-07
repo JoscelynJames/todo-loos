@@ -7,8 +7,20 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AAvatar: typeof import('ant-design-vue/es')['Avatar']
+    ADivider: typeof import('ant-design-vue/es')['Divider']
+    AInput: typeof import('ant-design-vue/es')['Input']
+    ALayout: typeof import('ant-design-vue/es')['Layout']
+    ALayoutContent: typeof import('ant-design-vue/es')['LayoutContent']
+    ALayoutHeader: typeof import('ant-design-vue/es')['LayoutHeader']
+    ALayoutSider: typeof import('ant-design-vue/es')['LayoutSider']
+    Brain: typeof import('./src/components/Icons/Brain.vue')['default']
+    BrainOutlined: typeof import('./src/components/Icons/BrainOutlined.vue')['default']
     Header: typeof import('./src/components/Header/Header.vue')['default']
+    List: typeof import('./src/components/List/List.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SliderNav: typeof import('./src/components/Nav/SliderNav.vue')['default']
+    TotalRubies: typeof import('./src/components/TotalRubies/TotalRubies.vue')['default']
   }
 }
