@@ -1,19 +1,19 @@
 <script lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import MainLayout from "@/layouts/MainLayout.vue";
+import HomeView from "@/components/views/HomeView.vue";
 
 export default {
   name: "App",
   components: {
-    MainLayout,
+    HomeView,
     RouterView
   }
 };
 </script>
 
 <template>
-  <MainLayout />
   <RouterView />
+  <HomeView />
 </template>
 
 <style lang="less">
