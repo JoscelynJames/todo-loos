@@ -5,3 +5,26 @@
 .pointer {
   cursor: pointer;
 }
+
+.full-height-modal {
+  .ant-modal-header {
+    border-bottom: 1px solid #9396b2;
+  }
+
+  .ant-modal {
+    top: 0;
+    left: 250px;
+    padding-bottom: 0;
+    margin: 0;
+  }
+  .ant-modal-content {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh);
+    width: 600px;
+  }
+  .ant-modal-body {
+    flex: 1;
+    overflow: scroll;
+  }
+}
