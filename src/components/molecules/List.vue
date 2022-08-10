@@ -24,7 +24,7 @@ export default defineComponent({
     BrainSvg,
     InfinitySvg
   },
-  emits: ['listItemClicked'],
+  emits: ['list-item-clicked'],
   props: {
     listItems: {
       type: Array as () => ListItem[],
@@ -34,7 +34,7 @@ export default defineComponent({
   },
   setup: (props, { emit }) => {
     const handleListItemClick = (item) => {
-      emit('listItemClicked', item)
+      emit('list-item-clicked', item)
     }
 
     return { handleListItemClick }

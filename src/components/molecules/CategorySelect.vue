@@ -2,8 +2,9 @@
 import { ref } from 'vue';
 
 export default {
-  name: "CategorySelect",
+  selectedCategories: "CategorySelect",
   props: {
+    selectedCategories: Array,
     labelText: {
       type: String,
       default: 'Category'
@@ -37,7 +38,7 @@ export default {
   <div>
     <Label :text="labelText"></Label>
     <a-select
-      :value="value"
+      :value="selectedCategories"
       show-search
       placeholder="Select a category"
       size="large"

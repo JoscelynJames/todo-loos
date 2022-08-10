@@ -4,9 +4,6 @@ import CategorySelect from '../molecules/CategorySelect.vue';
 
 export default {
     name: "SelectCategories",
-    setup() {
-        return {};
-    },
     components: { CategorySelect }
 };
 </script>
@@ -14,7 +11,7 @@ export default {
 <template>
   <section>
     <h4>Add Categories</h4>
-      <CategorySelect labelText="Category"></CategorySelect>
+      <CategorySelect></CategorySelect>
       
       <div class="added-categories---chip-container">
         <Chip rounded class="yellow" text="cleaning"></Chip>

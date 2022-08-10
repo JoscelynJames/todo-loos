@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ref } from 'vue';
+import { watch, ref } from 'vue';
 import DetailsSection from '@/components/organism/DetailsSection.vue';
 import EffortSection from '@/components/organism/EffortSection.vue';
 import SelectCategories from '@/components/organism/SelectCategories.vue';
@@ -8,41 +8,54 @@ import ScheduledTask from '@/components/organism/ScheduledTask.vue';
 export default {
   name: "AddTaskDialog",
   components: { DetailsSection, EffortSection, SelectCategories, ScheduledTask },
-  setup() {
-    const visible = ref<boolean>(true);
+  props: {
+    show: Boolean
+  },
+  emits: ['close-dialog'],
+  setup(props, { emit }) {
+    const visible = ref<boolean>(false);
     const titleInput = ref<string>('');
     const descriptionInput = ref<string>('');
+    const selectedCategories = ref<string[]>([]);
     const scheduledTaskRepeaterValue = ref<string>('daily');
     const scheduledTaskDueByDateString = ref<string>('2015/01/01');
 
-    const options = ref([
-      { value: 'jack', label: 'Jack' },
-      { value: 'lucy', label: 'Lucy' },
-      { value: 'tom', label: 'Tom' },
-    ]);
+    watch(
+      () => props.show,
+      (show) => {
+        visible.value = show
+      }
+    )
 
     const filterOption = (input: string, option: any) => {
       return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     };
 
-    const showModal = () => visible.value = true;
+    const showDialog = () => visible.value = true;
+    const closeDialog = () => emit('close-dialog')
+    const createTask = () => {
+      // create the task
+        closeDialog()
+      }
 
     return {
       visible,
-      showModal,
+      showDialog,
       titleInput,
       descriptionInput,
-      options,
       filterOption,
       scheduledTaskRepeaterValue,
-      scheduledTaskDueByDateString
+      scheduledTaskDueByDateString,
+      selectedCategories,
+      closeDialog,
+      createTask
     };
   },
 };
 </script>
 
 <template>
-  <a-modal wrap-class-name="full-height-modal" v-model:visible="visible" title="Add Task">
+  <a-modal ref="add-task-dialog" wrap-class-name="full-height-modal" :visible="visible" title="Add Task" @cancel="closeDialog" @ok="createTask">
     <DetailsSection
       detailsHeader="Task Details"
       titleLabel="Task"
@@ -55,7 +68,7 @@ export default {
     <a-divider></a-divider>
       <EffortSection></EffortSection>
     <a-divider></a-divider>
-      <SelectCategories></SelectCategories>
+      <SelectCategories :selectedCategories="selectedCategories"></SelectCategories>
     <a-divider></a-divider>
       <ScheduledTask
         :scheduledTaskRepeaterValue="scheduledTaskRepeaterValue"

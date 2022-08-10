@@ -24,9 +24,15 @@ const statsNavLinks = [
 export default defineComponent({
   name: "SliderNav",
   components: { UserOutlined, PlusOutlined },
-  emits: ['toggleDrawer'],
-  setup: () => {
-    return { actionNavLinks, pagesNavLinks, statsNavLinks }
+  emits: ['toggle-drawer', 'open-add-column-dialog', 'open-add-task-dialog', 'open-add-habit-dialog'],
+  setup: (props, { emit }) => {
+    const handleListActionItemClicked = (listItem) => {
+      if (listItem.id === 1) emit('open-add-column-dialog')
+      if (listItem.id === 2) emit('open-add-task-dialog')
+      if (listItem.id === 3) emit('open-add-habit-dialog')
+    }
+
+    return { handleListActionItemClicked, actionNavLinks, pagesNavLinks, statsNavLinks }
   }
 });
 </script>
@@ -45,7 +51,11 @@ export default defineComponent({
     <a-divider dashed />
     
     <section>
-      <List :listItems="actionNavLinks" listName="actions"></List>
+      <List 
+        :listItems="actionNavLinks" 
+        listName="actions" 
+        @list-item-clicked="handleListActionItemClicked($event)">
+      </List>
       <a-divider dashed />
       <List :listItems="pagesNavLinks" listName="pages"></List>
       <a-divider dashed />

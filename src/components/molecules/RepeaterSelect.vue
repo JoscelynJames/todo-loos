@@ -1,8 +1,4 @@
 <script lang="ts">
-import { onMounted, ref } from 'vue';
-import dayjs, { Dayjs } from 'dayjs';
-
-const dateFormat = 'YYYY/MM/DD';
 
 export default {
   name: "RepeaterSelect",
@@ -16,12 +12,10 @@ export default {
   },
   emits: ['category-changed'],
   setup(props, { emit }) {
-    // const scheduledTaskDueByDate = ref<Dayjs>(dayjs('', dateFormat));
-
-    // onMounted(() => {
-    //   scheduledTaskDueByDate.value = dayjs(props.scheduledTaskDueByDateString, dateFormat)
-    // })
-
+    const handleChange = (option) => {
+      emit('category-changed', option)
+    }
+    return { handleChange }
   },
 };
 </script>
@@ -33,9 +27,8 @@ export default {
         size="large"
         ref="select"
         v-model:value="scheduledTaskRepeaterValue"
-        style="width: 120px"
-        @focus="handleFocus"
-        @change="handleChange"
+        style="width: 260px"
+        @change="handleChange($event)"
       >
         <a-select-option value="daily">daily</a-select-option>
         <a-select-option value="weekly">weekly</a-select-option>

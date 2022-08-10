@@ -28,7 +28,10 @@ export default {
 <template>
   <div>
     <Label :text="labelValue"></Label>
-    <a-date-picker size="large" :value="scheduledTaskDueByDate" />
+    <a-date-picker 
+      style="width: 260px"
+      size="large" 
+      :value="scheduledTaskDueByDate" />
   </div>
 </template>
 

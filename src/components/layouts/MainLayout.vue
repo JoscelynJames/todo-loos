@@ -8,11 +8,12 @@ export default defineComponent({
   components: { Header, AddTaskDialog },
   setup: () => {
     const drawerIsOpen = ref(false)
+    const showAddTaskDialog = ref(false)
 
     const toggleDrawer = () => {
       drawerIsOpen.value = !drawerIsOpen.value
     }
-    return { drawerIsOpen, toggleDrawer }
+    return { drawerIsOpen, toggleDrawer, showAddTaskDialog }
   }
 });
 </script>
@@ -20,14 +21,14 @@ export default defineComponent({
 <template>
   <a-layout class="main-layout--container">
     <a-layout-sider v-if="drawerIsOpen">
-      <SliderNav></SliderNav>
+      <SliderNav @open-add-task-dialog="showAddTaskDialog = true"></SliderNav>
     </a-layout-sider>
     <a-layout>
       <a-layout-header>
-        <Header :drawerIsOpen="drawerIsOpen" @toggleDrawer="toggleDrawer"></Header>
+        <Header :drawerIsOpen="drawerIsOpen" @toggle-drawer="toggleDrawer"></Header>
       </a-layout-header>
       <a-layout-content>
-        <AddTaskDialog v-if="drawerIsOpen"></AddTaskDialog>
+        <AddTaskDialog v-if="drawerIsOpen" :show="showAddTaskDialog" @close-dialog="showAddTaskDialog = false"></AddTaskDialog>
         <slot></slot>
       </a-layout-content>
     </a-layout>
