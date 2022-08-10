@@ -7,8 +7,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    2: typeof import('./src/components/dialogs/AddTaskDialog copy 2.vue')['default']
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
     ADatePicker: typeof import('ant-design-vue/es')['DatePicker']
+    AddColumnDialog: typeof import('./src/components/dialogs/AddColumnDialog.vue')['default']
+    AddHabitDialog: typeof import('./src/components/dialogs/AddHabitDialog.vue')['default']
     AddTaskDialog: typeof import('./src/components/dialogs/AddTaskDialog.vue')['default']
     ADivider: typeof import('ant-design-vue/es')['Divider']
     AInput: typeof import('ant-design-vue/es')['Input']
@@ -23,6 +26,7 @@ declare module '@vue/runtime-core' {
     Brain: typeof import('./src/components/Icons/Brain.vue')['default']
     CategorySelect: typeof import('./src/components/molecules/CategorySelect.vue')['default']
     Chip: typeof import('./src/components/atoms/Chip.vue')['default']
+    copy: typeof import('./src/components/dialogs/AddTaskDialog copy.vue')['default']
     DetailsSection: typeof import('./src/components/organism/DetailsSection.vue')['default']
     EffortChips: typeof import('./src/components/molecules/EffortChips.vue')['default']
     EffortScale: typeof import('./src/components/molecules/EffortScale.vue')['default']

@@ -9,11 +9,14 @@ export default defineComponent({
   setup: () => {
     const drawerIsOpen = ref(false)
     const showAddTaskDialog = ref(false)
+    const showAddHabitDialog = ref(false)
+    const showAddColumnDialog = ref(false)
 
     const toggleDrawer = () => {
       drawerIsOpen.value = !drawerIsOpen.value
     }
-    return { drawerIsOpen, toggleDrawer, showAddTaskDialog }
+
+    return { drawerIsOpen, toggleDrawer, showAddTaskDialog, showAddHabitDialog, showAddColumnDialog }
   }
 });
 </script>
@@ -21,14 +24,16 @@ export default defineComponent({
 <template>
   <a-layout class="main-layout--container">
     <a-layout-sider v-if="drawerIsOpen">
-      <SliderNav @open-add-task-dialog="showAddTaskDialog = true"></SliderNav>
+      <SliderNav @open-add-task-dialog="showAddTaskDialog = true" @open-add-habit-dialog="showAddHabitDialog = true" @open-add-column-dialog="showAddColumnDialog = true"></SliderNav>
     </a-layout-sider>
     <a-layout>
       <a-layout-header>
         <Header :drawerIsOpen="drawerIsOpen" @toggle-drawer="toggleDrawer"></Header>
       </a-layout-header>
       <a-layout-content>
+        <AddColumnDialog v-if="drawerIsOpen" :show="showAddColumnDialog" @close-dialog="showAddColumnDialog = false"></AddColumnDialog>
         <AddTaskDialog v-if="drawerIsOpen" :show="showAddTaskDialog" @close-dialog="showAddTaskDialog = false"></AddTaskDialog>
+        <AddHabitDialog v-if="drawerIsOpen" :show="showAddHabitDialog" @close-dialog="showAddHabitDialog = false"></AddHabitDialog>
         <slot></slot>
       </a-layout-content>
     </a-layout>
