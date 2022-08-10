@@ -40,7 +40,7 @@ export default defineComponent({
 <template>
   <aside class="slider-nav--container">
     <header>
-      <a-avatar :size="{ xs: 24, sm: 32, md: 40, lg: 100, xl: 124, xxl: 132 }">
+      <a-avatar :size="{ xs: 56, sm: 56, md: 100, lg: 100, xl: 124, xxl: 132 }">
       <template #icon>
         <user-outlined />
       </template>
