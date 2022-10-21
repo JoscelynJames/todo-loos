@@ -11,7 +11,7 @@ export interface ListItem {
 }
 
 export default defineComponent({
-  name: "SliderNav",
+  name: "List", // rename this to NavList
   components: { 
     PlusOutlined,
     CheckOutlined,
